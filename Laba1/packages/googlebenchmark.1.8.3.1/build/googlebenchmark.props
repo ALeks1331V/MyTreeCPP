@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003"
+        ToolsVersion="15.0">
+
+  <PropertyGroup Label="UserMacros">
+      <BenchmarkDir>$(MSBuildThisFileDirectory)native\</BenchmarkDir>
+   </PropertyGroup>
+
+   <ItemDefinitionGroup Condition="'$(Platform)'=='x64'">
+      <ClCompile>
+         <AdditionalIncludeDirectories>$(BenchmarkDir)include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      </ClCompile>
+   </ItemDefinitionGroup>
+
+   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+      <Link>
+         <AdditionalLibraryDirectories>$(BenchmarkDir)x64\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+         <AdditionalDependencies>benchmark.lib;benchmark_main.lib;Shlwapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      </Link>
+   </ItemDefinitionGroup>
+
+   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+      <Link>
+         <AdditionalLibraryDirectories>$(BenchmarkDir)x64\Release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+         <AdditionalDependencies>benchmark.lib;benchmark_main.lib;Shlwapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      </Link>
+   </ItemDefinitionGroup>
+</Project>
